@@ -11,7 +11,10 @@ Console.WriteLine("Hello, World!");
 //adoDotNetExample.Update(11, "Test Title 3", "Test Author 3", "Test Content 3");
 //adoDotNetExample.Delete(11);
 
-DapperExample dapperExample = new DapperExample();
-dapperExample.Run();
+//DapperExample dapperExample = new DapperExample();
+//dapperExample.Run();
+
+EFCoreExample eFCoreExample = new EFCoreExample();
+eFCoreExample.Run();
 
 Console.ReadKey();

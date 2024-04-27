@@ -14,7 +14,8 @@ namespace THDotNetCore.ConsoleApp
             DataSource = ".",
             InitialCatalog = "THDotNetCore",
             UserID = "sa",
-            Password = "r00tp@ss"
+            Password = "r00tp@ss",
+            TrustServerCertificate = true
         };
     }
 }

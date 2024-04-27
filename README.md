@@ -2,3 +2,5 @@
 
 # DapperCRUDExample		=> done
 
+# EFCoreCRUDExample		=> done
+
