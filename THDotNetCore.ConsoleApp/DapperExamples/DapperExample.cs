@@ -7,8 +7,10 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using THDotNetCore.ConsoleApp.Dtos;
+using THDotNetCore.ConsoleApp.Services;
 
-namespace THDotNetCore.ConsoleApp
+namespace THDotNetCore.ConsoleApp.DapperExamples
 {
     public class DapperExample
     {

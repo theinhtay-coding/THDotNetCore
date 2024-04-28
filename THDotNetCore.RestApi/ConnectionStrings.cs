@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace THDotNetCore.ConsoleApp
+namespace THDotNetCore.RestApi
 {
     internal static class ConnectionStrings
     {

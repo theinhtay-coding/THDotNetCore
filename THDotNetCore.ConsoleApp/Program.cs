@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using THDotNetCore.ConsoleApp;
 using THDotNetCore.ConsoleApp.AdoDotNetExamples;
+using THDotNetCore.ConsoleApp.EFCoreExamples;
 
 Console.WriteLine("Hello, World!");
 

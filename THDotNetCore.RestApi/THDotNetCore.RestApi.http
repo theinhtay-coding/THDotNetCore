@@ -1,0 +1,10 @@
+@THDotNetCore.RestApi_HostAddress = https://localhost:7132
+
+GET {{THDotNetCore.RestApi_HostAddress}}/api/Blog/
+Accept: application/json
+
+###
+
+GET {{THDotNetCore.RestApi_HostAddress}}/api/Blog/1
+Accept: application/json
+
