@@ -32,6 +32,9 @@ namespace THDotNetCore.RestApi.Controllers
             {
                 return NotFound("Data Not Found");
             }
+            //if(item != null && item.BlogAuthor == "Mg Mg" && item.BlogTitle == "Software Engineering")
+            //if (item is { BlogAuthor: "Mg Mg", BlogTitle: "software Engineering"}) // test Property Pattern Condition
+            
             return Ok(item);
         }
 
@@ -86,11 +89,40 @@ namespace THDotNetCore.RestApi.Controllers
                 return NotFound("No Data Found");
             }
 
-            if (string.IsNullOrEmpty(blog.BlogTitle))
-            {
+            string conditions = string.Empty;
 
+
+            if (!string.IsNullOrEmpty(blog.BlogTitle))
+            {
+                conditions += " [BlogTitle] = @BlogTitle, ";
             }
-            return Ok();
+            if (!string.IsNullOrEmpty(blog.BlogAuthor))
+            {
+                conditions += " [BlogAuthor] = @BlogAuthor, ";
+            }
+            if (!string.IsNullOrEmpty(blog.BlogContent))
+            {
+                conditions += " [BlogContent] = @BlogContent, ";
+            }
+
+            if(conditions.Length == 0)
+            {
+                return NotFound("No data to update");
+            }
+
+            conditions = conditions.Substring(0, conditions.Length - 2);
+            blog.BlogId = id;
+
+            string query = $@"UPDATE [dbo].[Tbl_Blog]
+                               SET {conditions}
+                             WHERE BlogId = @BlogId";
+
+            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            int result = db.Execute(query, blog);
+
+            string message = result > 0 ? "Updated Successful." : "Updated Failed";
+
+            return Ok(message);
         }
 
         [HttpDelete]
