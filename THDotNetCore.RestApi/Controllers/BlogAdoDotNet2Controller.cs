@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection.Metadata;
 using THDotNetCore.RestApi.Models;
 using THDotNetCore.Shared;
 
@@ -79,15 +80,33 @@ namespace THDotNetCore.RestApi.Controllers
         [HttpPut]
         public IActionResult UpdateBlog(int id, BlogModel blog)
         {
-            return Ok();
+            var item = FindById(id);
+            if (item is null)
+            {
+                return NotFound("No data found.");
+            }
+
+            string query = @"UPDATE [dbo].[Tbl_Blog]
+                               SET [BlogTitle] = @BlogTitle
+                                  ,[BlogAuthor] = @BlogAuthor
+                                  ,[BlogContent] = @BlogContent
+                             WHERE BlogId = @BlogId";
+
+            int result = _adoDotNetService.Execute(query,
+                new AdoDotNetParameter("@BlogId", id),
+                new AdoDotNetParameter("@BlogTitle", blog.BlogTitle),
+                new AdoDotNetParameter(name: "@BlogAuthor", blog.BlogAuthor),
+                new AdoDotNetParameter("@BlogContent", blog.BlogContent)
+                );
+
+            string message = result > 0 ? "Updating Successful." : "Updating Failed";
+            return Ok(message);
         }
 
         [HttpPatch("{id}")]
         public IActionResult PatchBlog(int id, BlogModel blog)
         {
-            string queryById = "select * from tbl_blog where BlogId = @BlogId";
-            var item = _adoDotNetService.QueryFirstOrDefault<BlogModel>(queryById, new AdoDotNetParameter("@BlogId", id));
-
+            var item = FindById(id);
             if (item is null)
             {
                 return NotFound("No data found.");
@@ -134,7 +153,27 @@ namespace THDotNetCore.RestApi.Controllers
         [HttpDelete]
         public IActionResult DeleteBlog(int id)
         {
-            return Ok();
+            var item = FindById(id);
+            if (item is null)
+            {
+                return NotFound("No data found.");
+            }
+            string query = @"DELETE FROM [dbo].[Tbl_Blog]
+                            WHERE BlogId = @BlogId";
+
+            int result = _adoDotNetService.Execute(query,
+            new AdoDotNetParameter("@BlogId", id)
+        );
+
+            string message = result > 0 ? "Delete Successful." : "Delete Failed";
+            return Ok(message);
+        }
+
+        private BlogModel? FindById(int id)
+        {
+            string query = "select * from tbl_blog where BlogId = @BlogId";
+            var item = _adoDotNetService.QueryFirstOrDefault<BlogModel>(query, new AdoDotNetParameter("@BlogId", id));
+            return item;
         }
     }
 }
