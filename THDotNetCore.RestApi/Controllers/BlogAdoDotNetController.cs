@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Dapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Data.SqlClient;
@@ -65,7 +66,7 @@ namespace THDotNetCore.RestApi.Controllers
                               ,[BlogTitle]
                               ,[BlogAuthor]
                               ,[BlogContent]
-                          FROM [dbo].[Tbl_Blog] wher BlogId = @BlogId";
+                          FROM [dbo].[Tbl_Blog] where BlogId = @BlogId";
 
             SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
             connection.Open();
@@ -125,19 +126,166 @@ namespace THDotNetCore.RestApi.Controllers
         [HttpPut]
         public IActionResult UpdateBlog(int id, BlogModel blog)
         {
-            return Ok();
+            var item = FindById(id);
+            if (item is null)
+            {
+                return NotFound("No data found");
+            }
+
+            SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+
+            string query = @"UPDATE [dbo].[Tbl_Blog]
+                               SET [BlogTitle] = @BlogTitle
+                                  ,[BlogAuthor] = @BlogAuthor
+                                  ,[BlogContent] = @BlogContent
+                             WHERE BlogId = @BlogId";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            cmd.Parameters.AddWithValue("@BlogTitle", blog.BlogTitle);
+            cmd.Parameters.AddWithValue("@BlogAuthor", blog.BlogAuthor);
+            cmd.Parameters.AddWithValue("@BlogContent", blog.BlogContent);
+            int result = cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            string message = result > 0 ? "Updating Successful." : "Updating Failed";
+
+            return Ok(message);
         }
 
-        [HttpPatch]
+        [HttpPatch("{id}")]
         public IActionResult PatchBlog(int id, BlogModel blog)
         {
-            return Ok();
+            SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+            string query = "select * from Tbl_Blog where BlogId = @BlogId";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            var count = cmd.ExecuteScalar();
+            //var count = cmd.ExecuteNonQuery();
+            if (count == null || count == DBNull.Value || (int)count == 0) return NotFound();
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            dataAdapter.Fill(dt);
+            List<BlogModel> lst = new List<BlogModel>();
+            if (dt.Rows.Count == 0)
+            {
+                var response = new { IsSuccess = false, Message = "No data found." };
+                return NotFound(response);
+            }
+
+            DataRow row = dt.Rows[0];
+
+            BlogModel item = new BlogModel
+            {
+                BlogId = Convert.ToInt32(row["BlogId"]),
+                BlogTitle = Convert.ToString(row["BlogTitle"]),
+                BlogAuthor = Convert.ToString(row["BlogAuthor"]),
+                BlogContent = Convert.ToString(row["BlogContent"]),
+            };
+            lst.Add(item);
+
+            string conditions = "";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            #region Patch Validation Conditions
+
+            if (!string.IsNullOrEmpty(blog.BlogTitle))
+            {
+                conditions += " [BlogTitle] = @BlogTitle, ";
+                parameters.Add(new SqlParameter("@BlogTitle", SqlDbType.NVarChar) { Value = blog.BlogTitle });
+                item.BlogTitle = blog.BlogTitle;
+            }
+
+            if (!string.IsNullOrEmpty(blog.BlogAuthor))
+            {
+                conditions += " [BlogAuthor] = @BlogAuthor, ";
+                parameters.Add(new SqlParameter("@BlogAuthor", SqlDbType.NVarChar) { Value = blog.BlogAuthor });
+                item.BlogAuthor = blog.BlogAuthor;
+            }
+
+            if (!string.IsNullOrEmpty(blog.BlogContent))
+            {
+                conditions += " [BlogContent] = @BlogContent, ";
+                parameters.Add(new SqlParameter("@BlogContent", SqlDbType.NVarChar) { Value = blog.BlogContent });
+                item.BlogContent = blog.BlogContent;
+            }
+
+            if (conditions.Length == 0)
+            {
+                var response = new { IsSuccess = false, Message = "No data found." };
+                return NotFound(response);
+            }
+
+            #endregion
+
+            conditions = conditions.TrimEnd(',', ' ');
+            query = $@"UPDATE [dbo].[Tbl_Blog] SET {conditions} WHERE BlogId = @BlogId";
+
+            using SqlCommand cmd2 = new SqlCommand(query, connection);
+            cmd2.Parameters.AddWithValue("@BlogId", id);
+            cmd2.Parameters.AddRange(parameters.ToArray());
+
+            int result = cmd2.ExecuteNonQuery();
+            connection.Close();
+            string message = result > 0 ? "Patch Updating Successful." : "Patch Updating Failed.";
+            return Ok(message);
         }
 
         [HttpDelete]
         public IActionResult DeleteBlog(int id)
         {
-            return Ok();
+            var item = FindById(id);
+            if (item is null)
+            {
+                return NotFound("No data found");
+            }
+            SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+
+            string query = @"DELETE FROM [dbo].[Tbl_Blog]
+                            WHERE BlogId = @BlogId";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            int result = cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            string message = result > 0 ? "Delete Successful." : "Delete Failed";
+            return Ok(message);
+        }
+
+        private BlogModel? FindById(int id)
+        {
+            string query = @"SELECT [BlogId]
+                              ,[BlogTitle]
+                              ,[BlogAuthor]
+                              ,[BlogContent]
+                          FROM [dbo].[Tbl_Blog] where BlogId = @BlogId";
+
+            SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("BlogId", id);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            connection.Close();
+
+            DataRow dr = dt.Rows[0];
+            var item = new BlogModel
+            {
+                BlogId = Convert.ToInt32(dr["BlogId"]),
+                BlogTitle = Convert.ToString(dr["BlogTitle"]),
+                BlogAuthor = Convert.ToString(dr["BlogAuthor"]),
+                BlogContent = Convert.ToString(dr["BlogContent"])
+            };
+
+            return item;
         }
     }
 }
