@@ -14,7 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THDotNetCore.RestApi", "THD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THDotNetCore.Shared", "THDotNetCore.Shared\THDotNetCore.Shared.csproj", "{17B3528E-3E0A-4091-AFDF-E534D3B714EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THDotNetCore.RestApiWithNLayer", "THDotNetCore.RestApiWithNLayer\THDotNetCore.RestApiWithNLayer.csproj", "{99A15618-1B42-4D6C-B12E-6D72FFF9736E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THDotNetCore.RestApiWithNLayer", "THDotNetCore.RestApiWithNLayer\THDotNetCore.RestApiWithNLayer.csproj", "{99A15618-1B42-4D6C-B12E-6D72FFF9736E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THDotNetCore.ConsoleAppHttpClient", "THDotNetCore.ConsoleAppHttpClient\THDotNetCore.ConsoleAppHttpClient.csproj", "{E05C35E7-58DF-4B95-8AB4-19D1CD4173BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{99A15618-1B42-4D6C-B12E-6D72FFF9736E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99A15618-1B42-4D6C-B12E-6D72FFF9736E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99A15618-1B42-4D6C-B12E-6D72FFF9736E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E05C35E7-58DF-4B95-8AB4-19D1CD4173BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E05C35E7-58DF-4B95-8AB4-19D1CD4173BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E05C35E7-58DF-4B95-8AB4-19D1CD4173BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E05C35E7-58DF-4B95-8AB4-19D1CD4173BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
