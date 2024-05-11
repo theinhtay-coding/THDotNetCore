@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THDotNetCore.ConsoleAppHttp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THDotNetCore.ConsoleAppHttpClientExamples", "THDotNetCore.ConsoleAppHttpClientExamples\THDotNetCore.ConsoleAppHttpClientExamples.csproj", "{181826D1-9190-4691-B613-F0807A3DAE80}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THDotNetCore.ConsoleAppRestClientExamples", "THDotNetCore.ConsoleAppRestClientExamples\THDotNetCore.ConsoleAppRestClientExamples.csproj", "{7539FEB4-9977-4355-AF1C-BB17781C4442}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{181826D1-9190-4691-B613-F0807A3DAE80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{181826D1-9190-4691-B613-F0807A3DAE80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{181826D1-9190-4691-B613-F0807A3DAE80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7539FEB4-9977-4355-AF1C-BB17781C4442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7539FEB4-9977-4355-AF1C-BB17781C4442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7539FEB4-9977-4355-AF1C-BB17781C4442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7539FEB4-9977-4355-AF1C-BB17781C4442}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

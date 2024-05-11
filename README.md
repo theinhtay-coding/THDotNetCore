@@ -12,6 +12,8 @@
 ### DapperService			=> done
 
 ### RestApiWithNLayer		=> done
-### Burmese Project Idea	=> done
+### Burmese Project Idea	=> Inprogress
 
+### ConsoleAppHttpClientExamples	=> done
+### ConsoleAppRestClientExamples	=> done
 
