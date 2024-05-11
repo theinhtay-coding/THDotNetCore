@@ -1,0 +1,6 @@
+@THDotNetCore.RestApiWithNLayer_HostAddress = http://localhost:5161
+
+GET {{THDotNetCore.RestApiWithNLayer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
