@@ -24,7 +24,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THDotNetCore.ConsoleAppRest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THDotNetCore.BurmesePojectIdeaProjects", "THDotNetCore.BurmesePojectIdeaProjects\THDotNetCore.BurmesePojectIdeaProjects.csproj", "{4F363516-EA2F-442C-BFFA-05A298791FC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THDotNetCore.PizzaApi", "THDotNetCore.PizzaApi\THDotNetCore.PizzaApi.csproj", "{30BB9F3B-BBCB-498B-A34E-487B7AD20A64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THDotNetCore.PizzaApi", "THDotNetCore.PizzaApi\THDotNetCore.PizzaApi.csproj", "{30BB9F3B-BBCB-498B-A34E-487B7AD20A64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THDotNetCore.ConsoleAppRefitExamples", "THDotNetCore.ConsoleAppRefitExamples\THDotNetCore.ConsoleAppRefitExamples.csproj", "{2A6B0B55-C379-4F06-977B-72CFD21C0620}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,6 +70,10 @@ Global
 		{30BB9F3B-BBCB-498B-A34E-487B7AD20A64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30BB9F3B-BBCB-498B-A34E-487B7AD20A64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30BB9F3B-BBCB-498B-A34E-487B7AD20A64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A6B0B55-C379-4F06-977B-72CFD21C0620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A6B0B55-C379-4F06-977B-72CFD21C0620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A6B0B55-C379-4F06-977B-72CFD21C0620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A6B0B55-C379-4F06-977B-72CFD21C0620}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
