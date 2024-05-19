@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using THDotNetCore.PizzaApi.Db;
 using THDotNetCore.PizzaApi.Models;
+using THDotNetCore.PizzaApi.Queries;
+using THDotNetCore.Shared;
 
 namespace THDotNetCore.PizzaApi.Features.Pizza
 {
@@ -11,10 +13,12 @@ namespace THDotNetCore.PizzaApi.Features.Pizza
     public class PizzaController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
+        private readonly DapperService _dapperService;
 
         public PizzaController()
         {
             _appDbContext = new AppDbContext();
+            _dapperService = new DapperService(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
         }
 
         [HttpGet]
@@ -31,17 +35,41 @@ namespace THDotNetCore.PizzaApi.Features.Pizza
             return Ok(lst);
         }
 
-        [HttpGet("Order/{invoiceNo}")]
-        public async Task<IActionResult> GetOrderAsync(string invoiceNo)
-        {
-            var item = await _appDbContext.PizzaOrders.FirstOrDefaultAsync(x => x.PizzaOrderInvoiceNo == invoiceNo);
-            var lst = await _appDbContext.PizzaOrderDetails.Where(x => x.PizzaOrderInvoiceNo == invoiceNo).ToListAsync();
+        //[HttpGet("Order/{invoiceNo}")]
+        //public async Task<IActionResult> GetOrderAsync(string invoiceNo)
+        //{
+        //    var item = await _appDbContext.PizzaOrders.FirstOrDefaultAsync(x => x.PizzaOrderInvoiceNo == invoiceNo);
+        //    var lst = await _appDbContext.PizzaOrderDetails.Where(x => x.PizzaOrderInvoiceNo == invoiceNo).ToListAsync();
 
-            return Ok(new
+        //    return Ok(new
+        //    {
+        //        Order = item,
+        //        OrderDetail = lst
+        //    });
+        //}
+
+        [HttpGet("Order/{invoiceNo}")]
+        public IActionResult GetOrderAsync(string invoiceNo)
+        {
+            var item = _dapperService.QueryFirstOrDefault<PizzaOrderHeadModel>
+                (
+                    PizzaQuery.PizzaOrderQuery,
+                    new { PizzaOrderInvoiceNo = invoiceNo }
+                );
+            
+            var lst = _dapperService.Query<PizzaOrderInvoiceDetailModel>
+                (
+                    PizzaQuery.PizzaOrderDetailQuery,
+                    new { PizzaOrderInvoiceNo = invoiceNo }
+                );
+
+            var model = new PizzaOrderInvoiceResponse
             {
                 Order = item,
                 OrderDetail = lst
-            });
+            };
+
+            return Ok(model);
         }
 
         [HttpPost("Order")]
@@ -50,10 +78,10 @@ namespace THDotNetCore.PizzaApi.Features.Pizza
             var itemPizza = await _appDbContext.Pizzas.FirstOrDefaultAsync(x => x.Id == orderRequest.PizzaId);
             var total = itemPizza.Price;
 
-            if(orderRequest.Extras.Length > 0)
+            if (orderRequest.Extras.Length > 0)
             {
                 // select * from Tbl_PizzaExtra where PizzaExtraId in (1,2,3,4)
-                var lstExtra = await _appDbContext.PizzaExtras.Where(x=> orderRequest.Extras.Contains(x.Id)).ToListAsync();
+                var lstExtra = await _appDbContext.PizzaExtras.Where(x => orderRequest.Extras.Contains(x.Id)).ToListAsync();
                 total += lstExtra.Sum(x => x.Price);
             }
 
