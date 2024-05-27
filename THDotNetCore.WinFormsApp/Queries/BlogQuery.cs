@@ -17,5 +17,10 @@ namespace THDotNetCore.WinFormsApp.Queries
                                    ,@BlogAuthor
                                    ,@BlogContent)";
 
+        public static string BlogRead { get; } = @"SELECT [BlogId]
+                                  ,[BlogTitle]
+                                  ,[BlogAuthor]
+                                  ,[BlogContent]
+                              FROM [dbo].[Tbl_Blog]";
     }
 }
