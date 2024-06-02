@@ -52,6 +52,7 @@
             dgvBlogs.RowHeadersWidth = 51;
             dgvBlogs.Size = new Size(880, 542);
             dgvBlogs.TabIndex = 0;
+            dgvBlogs.CellContentClick += dgvBlogs_CellContentClick;
             // 
             // colId
             // 
@@ -60,7 +61,6 @@
             colId.MinimumWidth = 6;
             colId.Name = "colId";
             colId.ReadOnly = true;
-            colId.Visible = false;
             // 
             // colEdit
             // 

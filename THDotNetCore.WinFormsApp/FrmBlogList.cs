@@ -25,8 +25,60 @@ namespace THDotNetCore.WinFormsApp
 
         private void FrmBlogList_Load(object sender, EventArgs e)
         {
+            LoadBlogList();
+        }
+
+        private void LoadBlogList()
+        {
             List<BlogModel> lst = _dapperService.Query<BlogModel>(BlogQuery.BlogRead);
             dgvBlogs.DataSource = lst;
+        }
+
+        private void dgvBlogs_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1) return;
+
+            int blogId = Convert.ToInt32(dgvBlogs.Rows[e.RowIndex].Cells["colId"].Value);
+
+            if (e.ColumnIndex == (int)EnumFormControlType.Edit)
+            {
+                FrmBlog frmBlog = new FrmBlog(blogId);
+                frmBlog.ShowDialog();
+            }
+            else if(e.ColumnIndex == (int)EnumFormControlType.Delete)
+            {
+                var dialogResult = MessageBox.Show("Are you sure want to delete?" , "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(dialogResult.Equals(DialogResult.No)) return;
+                DeleteBlog(blogId);
+            }
+            else
+            {
+                return;
+            }
+
+            LoadBlogList();
+            #region test with switch case
+            //EnumFormControlType enumFormControlType = EnumFormControlType.Edit;
+            //switch (enumFormControlType)
+            //{
+            //    case EnumFormControlType.None:
+            //        break;
+            //    case EnumFormControlType.Edit:
+            //        break;
+            //    case EnumFormControlType.Delete:
+            //        break;
+            //    default:
+            //        break;
+            //}
+            #endregion
+        }
+
+        private void DeleteBlog(int id)
+        {
+            string query = @"Delete from [dbo].[Tbl_Blog] WHERE BlogId = @BlogId";
+            int result = _dapperService.Execute(query, new { BlogId = id });
+            string message = result > 0 ? "Deleted Successful." : "Deleted Failed";
+            MessageBox.Show(message);
         }
     }
 }
