@@ -58,7 +58,8 @@ namespace THDotNetCore.WinFormsApp
 
             LoadBlogList();
             #region test with switch case
-            //EnumFormControlType enumFormControlType = EnumFormControlType.Edit;
+            //int index = e.ColumnIndex;
+            //EnumFormControlType enumFormControlType = (EnumFormControlType)index;
             //switch (enumFormControlType)
             //{
             //    case EnumFormControlType.None:
@@ -68,6 +69,7 @@ namespace THDotNetCore.WinFormsApp
             //    case EnumFormControlType.Delete:
             //        break;
             //    default:
+            //        MessageBox.Show("Invalid Case.");
             //        break;
             //}
             #endregion
