@@ -28,9 +28,9 @@ function editBlog(id) {
     return;
   }
 
-  blogId = item.id;
   // return item[0];
   let item = items[0];
+  blogId = item.id;
   $("#txtTitle").val(item.title);
   $("#txtAuthor").val(item.author);
   $("#txtContent").val(item.content);
