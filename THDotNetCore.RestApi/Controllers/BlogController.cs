@@ -9,11 +9,18 @@ namespace THDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogController : ControllerBase
     {
-        public readonly AppDbContext _context;
+        //public readonly AppDbContext _context;
 
-        public BlogController()
+        //public BlogController()
+        //{
+        //    _context = new AppDbContext();
+        //}
+
+        private readonly AppDbContext _context;
+
+        public BlogController(AppDbContext context)
         {
-            _context = new AppDbContext();
+            _context = context;
         }
 
         [HttpGet]

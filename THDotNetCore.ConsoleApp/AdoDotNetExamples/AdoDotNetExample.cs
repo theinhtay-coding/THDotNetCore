@@ -10,13 +10,20 @@ namespace THDotNetCore.ConsoleApp.AdoDotNetExamples
 {
     public class AdoDotNetExample
     {
-        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        //private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        //{
+        //    DataSource = ".",
+        //    InitialCatalog = "THDotNetCore",
+        //    UserID = "sa",
+        //    Password = "r00tp@ss"
+        //};
+        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder;
+
+        public AdoDotNetExample(SqlConnectionStringBuilder sqlConnectionStringBuilder)
         {
-            DataSource = ".",
-            InitialCatalog = "THDotNetCore",
-            UserID = "sa",
-            Password = "r00tp@ss"
-        };
+            _sqlConnectionStringBuilder = sqlConnectionStringBuilder;
+        }
+
         //CRUD
         public void Read()
         {

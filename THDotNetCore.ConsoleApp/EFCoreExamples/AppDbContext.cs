@@ -11,14 +11,14 @@ namespace THDotNetCore.ConsoleApp.EFCoreExamples
 {
     public class AppDbContext : DbContext
     {
-        //public AppDbContext(DbContextOptions options) : base(options)
-        //{
-
-        //}
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public AppDbContext(DbContextOptions options) : base(options)
         {
-            optionsBuilder.UseSqlServer(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+
         }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+        //}
 
         public DbSet<BlogDto> Blogs { get; set; }
     }

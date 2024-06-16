@@ -10,7 +10,13 @@ namespace THDotNetCore.ConsoleApp.EFCoreExamples
 {
     public class EFCoreExample
     {
-        public readonly AppDbContext db = new AppDbContext();
+        //public readonly AppDbContext db = new AppDbContext();
+        private readonly AppDbContext db;
+
+        public EFCoreExample(AppDbContext db)
+        {
+            this.db = db;
+        }
 
         public void Run()
         {
