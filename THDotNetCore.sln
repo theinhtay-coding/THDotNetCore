@@ -38,6 +38,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THDotNetCore.NLayer.DataAcc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THDotNetCore.MinimalApi", "THDotNetCore.MinimalApi\THDotNetCore.MinimalApi.csproj", "{99286CB1-459D-427B-80E4-6147941B5097}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THDotNetCore.MvcApp", "THDotNetCore.MvcApp\THDotNetCore.MvcApp.csproj", "{5E05B583-B9EE-405C-9A89-213D2AF3E411}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{99286CB1-459D-427B-80E4-6147941B5097}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99286CB1-459D-427B-80E4-6147941B5097}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99286CB1-459D-427B-80E4-6147941B5097}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E05B583-B9EE-405C-9A89-213D2AF3E411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E05B583-B9EE-405C-9A89-213D2AF3E411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E05B583-B9EE-405C-9A89-213D2AF3E411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E05B583-B9EE-405C-9A89-213D2AF3E411}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
