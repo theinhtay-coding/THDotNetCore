@@ -1,0 +1,6 @@
+@THDotNetCore.MinimalApi_HostAddress = http://localhost:5160
+
+GET {{THDotNetCore.MinimalApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
