@@ -40,7 +40,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THDotNetCore.MinimalApi", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THDotNetCore.MvcApp", "THDotNetCore.MvcApp\THDotNetCore.MvcApp.csproj", "{5E05B583-B9EE-405C-9A89-213D2AF3E411}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THDotNetCore.MvcApp2", "THDotNetCore.MvcApp2\THDotNetCore.MvcApp2.csproj", "{EA17327E-5527-41CD-AD90-60B84B3B413F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THDotNetCore.MvcApp2", "THDotNetCore.MvcApp2\THDotNetCore.MvcApp2.csproj", "{EA17327E-5527-41CD-AD90-60B84B3B413F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THDotNetCore.MvcChartApp", "THDotNetCore.MvcChartApp\THDotNetCore.MvcChartApp.csproj", "{DF5328E7-9EA3-4965-87D1-A519D15DD901}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,6 +118,10 @@ Global
 		{EA17327E-5527-41CD-AD90-60B84B3B413F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA17327E-5527-41CD-AD90-60B84B3B413F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA17327E-5527-41CD-AD90-60B84B3B413F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF5328E7-9EA3-4965-87D1-A519D15DD901}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF5328E7-9EA3-4965-87D1-A519D15DD901}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF5328E7-9EA3-4965-87D1-A519D15DD901}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF5328E7-9EA3-4965-87D1-A519D15DD901}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
