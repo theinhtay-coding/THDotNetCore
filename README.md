@@ -58,3 +58,12 @@ Subject =>
 Berif summary of the change in present tense. Not capitalized. No period at the end.
 
 
+ApexChart
+https://apexcharts.com/
+
+
+ChartJS
+https://www.chartjs.org/docs/latest/
+https://github.com/chartjs/Chart.js/blob/master/docs/scripts/utils.js
+
+
