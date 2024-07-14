@@ -16,5 +16,11 @@ namespace THDotNetCore.MvcChartApp.Controllers
             _logger.LogInformation("Line Chart");
             return View();
         }
+
+        public IActionResult StackedAreaChart()
+        {
+            _logger.LogInformation("Stacked Area Chart");
+            return View();
+        }
     }
 }
