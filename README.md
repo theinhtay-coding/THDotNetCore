@@ -66,4 +66,14 @@ ChartJS
 https://www.chartjs.org/docs/latest/
 https://github.com/chartjs/Chart.js/blob/master/docs/scripts/utils.js
 
+HighChart
+https://www.highcharts.com/demo
 
+
+SignalR
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-8.0&tabs=visual-studio
+
+Database First
+Scaffold-DbContext "Server=.;Database=THDotNetCore;User ID=sa;Password=r00tp@ss;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context AppDbContext
+
+dotnet ef dbcontext scaffold "Server=.;Database=THDotNetCore;User Id=sa;Password=r00tp@ss;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -c AppDbContext -f
