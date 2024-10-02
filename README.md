@@ -73,7 +73,15 @@ https://www.highcharts.com/demo
 SignalR
 https://learn.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-8.0&tabs=visual-studio
 
-Database First
+Database First in PackageManager Console
 Scaffold-DbContext "Server=.;Database=THDotNetCore;User ID=sa;Password=r00tp@ss;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context AppDbContext
 
+
+Database First in Terminal
+dotnet ef dbcontext scaffold "Server=.;Database=DbName;User Id=userId;Password=password;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -c AppDbContext -t Tbl_Name -f
+
 dotnet ef dbcontext scaffold "Server=.;Database=THDotNetCore;User Id=sa;Password=r00tp@ss;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -c AppDbContext -f
+dotnet tool install --global dotnet-ef --version 8
+Notes => Need to remove OnConfiguration function in AppDbContext
+We shoud separate class file for database first.
+
